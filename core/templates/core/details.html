@@ -1,0 +1,44 @@
+{% extends 'auswahl.html' %}
+{% load static %}
+{% block content %}
+
+<h2>Details:</h2>
+{% autoescape off %}
+<ul>
+    <li>ID: {{protokoll.id}}</li>
+
+    <li>Datum: {{protokoll.start|date:"d.m.y H:i"}}</li>
+    <li>Halbjahr: {{protokoll.sj}}/{{protokoll.hj}}</li>
+
+    <li>user: {{protokoll.user}}</li>
+    <li>Jg: {{protokoll.user.jg}}</li>
+    <li>Kurs: {{protokoll.user.kurs}}</li>
+    <li>Stufe: {{protokoll.user.stufe}}</li>
+    <br>
+    <li>Kategorie: {{protokoll.kategorie.name}}</li>
+    <li>typ: {{protokoll.typ}}</li>
+    <li>typ2: {{protokoll.typ2}}</li>
+    <li>parameter: {{protokoll.parameter}}</li>
+   
+    <li>Frage: {{protokoll.text}}</li>
+    <li>Werte: {{protokoll.variable}}</li>
+
+    <li>Hilfe: {{hilfe.text}}</li>
+    <li>Ergebnis: {{protokoll.wert|floatformat:"-3"}}</li>
+    <li>Lösung: {{protokoll.loesung}}</li>
+    <br>
+    <li>Eingabe: {{protokoll.eingabe}}</li>
+    <li>Wertung: {{protokoll.wertung}}</li>
+    <li>Bearbeitungszeit: {{protokoll.dauer|floatformat:"1"}}sec</li> 
+    <br>
+    <li>Aufgabe: {{protokoll.aufgnr}}</li>
+    <li>richtig: {{protokoll.richtig}}</li>
+    <li>falsch: {{protokoll.falsch}}</li>
+    <li>Aufgaben ohne Fehler: {{zaehler.richtig_of}}</li> 
+    <br>
+    <li>Start: {{protokoll.start}}</li>
+    <li>Ende: {{protokoll.end}}</li>
+
+</ul>
+{% endautoescape %}
+{% endblock %}

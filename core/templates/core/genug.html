@@ -1,0 +1,8 @@
+{% extends 'auswahl.html' %}  
+{% block content %}
+<body>
+    <p>Die Aufgaben zum Thema {{kategorie}} kannst du schon gut - <br>übe doch mal was anderes!</p>
+    <a href="{% url 'uebersicht' %}">weiter</a>
+</body>
+{% endblock %}
+</html>

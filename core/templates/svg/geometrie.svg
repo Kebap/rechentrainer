@@ -1,0 +1,234 @@
+
+<svg xmlns="http://www.w3.org/2000/svg"
+version=1.1"
+<svg viewbox="0 0 {{parameter.box_breite}} {{parameter.box_hoehe}}">
+<defs>
+    <g id="strecke">
+        <line x1="{{parameter.x1}}" y1="{{parameter.y1}}" x2="{{parameter.x2}}" y2="{{parameter.y2}}" class="dick"/>
+        {% if "1" in parameter.ende %}
+            <line x1="{{parameter.x1}}" y1="{{parameter.y1|add:10}}" x2="{{parameter.x1}}" y2="{{parameter.y1|add:-10}}"  class="dick" />
+        {% endif %}
+        {% if "2" in parameter.ende %}
+            <line x1="{{parameter.x2}}" y1="{{parameter.y1|add:10}}" x2="{{parameter.x2}}" y2="{{parameter.y1|add:-10}}"  class="dick" />
+        {% endif %}
+    </g>
+
+    <symbol id="quadrat" >
+        <rect x="65" y="20" width=15 height="15" style="stroke:black;stroke-width:0.5;fill:yellow"/>	
+    </symbol>         
+
+    <g id="kreuz">
+        <line x1="0" y1="-5" x2="10" y2="5"  class="dick" />
+        <line x1="0" y1="5" x2="10" y2="-5"  class="dick"" />
+    </g>
+
+    <g id="wuerfelchen" style="stroke: black; stroke-width: 1; fill-opacity: 0.7;">
+        <polygon points="0,26 20,26, 20,6, 0,6" style="fill: yellow;"/>
+        <polygon points="0,6 20,6 26,0 6,0" style="fill: blue;"/>
+        <polygon points="20,26 26,20 26,0 20,6" style="fill: red;"/>
+    </g>
+
+    <g id="wuerfel"">
+        <polygon points="0,26 20,26, 20,6, 0,6"                 style="stroke:grey;stroke-width:1;fill: #C0FFFF"/>
+        <polygon points="0,6 20,6 26,0 6,0"                     style="stroke:grey;"fill:  class="blau"/>
+        <polygon points="20,26 26,20 26,0 20,6"                 style="stroke:grey;stroke-width:1;fill: #D0FFFF""/>
+    </g>
+
+    <g id="dreieck">
+        <polygon points="{{parameter.x1}},{{parameter.y1}} {{parameter.x2}},{{parameter.y2}} {{parameter.x3}},{{parameter.y3}}"  style="stroke:black;stroke-width:1;fill: #E0FFFF"/>
+        <path d="
+        M{{parameter.x3}} {{parameter.y3|add:40}}
+        A40 40 0 0 0  {{parameter.x3|add:40}} {{parameter.y3}}
+        "    
+        fill="none"
+        stroke="black"/>
+        <circle cx="{{parameter.x3|add:15}}" cy="{{parameter.y3|add:15}}" r="2" />  
+     </g>
+
+    <g id="h1_pfeil" style="stroke: black; stroke-width: 1">
+        <line x1=0    y1=0   x2={{parameter.breite_u}}  y2=0 />
+        <line x1=0    y1=0   x2=5   y2=-5 /> 
+        <line x1=0    y1=0   x2=5  y2=5 />
+        <line x1={{parameter.breite_u}}    y1=0   x2={{parameter.breite_u|add:-5}}  y2=-5 />
+        <line x1={{parameter.breite_u}}    y1=0   x2={{parameter.breite_u|add:-5}}  y2=5 />
+    </g>
+
+    <g id="h2_pfeil" style="stroke: black; stroke-width: 1">
+        <line x1=0    y1=0   x2={{parameter.breite_o}}  y2=0 />
+        <line x1=0    y1=0   x2=5   y2=-5 /> 
+        <line x1=0    y1=0   x2=5  y2=5 />
+        <line x1={{parameter.breite_o}}    y1=0   x2={{parameter.breite_o|add:-5}}  y2=-5 />
+        <line x1={{parameter.breite_o}}    y1=0   x2={{parameter.breite_o|add:-5}}  y2=5 />
+    </g>
+
+    <g id="v1_pfeil" style="stroke: black; stroke-width: 1">
+        <line x1=0    y1=0  x2=0  y2=-{{parameter.hoehe}} />
+        <line x1=0    y1=0                     x2=5  y2=-5 /> 
+        <line x1=0    y1=0                     x2=-5 y2=-5 />
+        <line x1=0    y1=-{{parameter.hoehe}}  x2=-5 y2=-{{parameter.hoehe|add:-5}} />
+        <line x1=0   y1=-{{parameter.hoehe}}   x2=5  y2=-{{parameter.hoehe|add:-5}} />
+    </g>
+
+    <g id="v2_pfeil" style="stroke: black; stroke-width: 1">
+        <line x1=0    y1=0  x2=0  y2=-{{parameter.tiefe}} />
+        <line x1=0    y1=0                     x2=5  y2=-5 /> 
+        <line x1=0    y1=0                     x2=-5 y2=-5 />
+        <line x1=0    y1=-{{parameter.tiefe}}  x2=-5 y2=-{{parameter.tiefe|add:-5}} />
+        <line x1=0    y1=-{{parameter.tiefe}}  x2=5  y2=-{{parameter.tiefe|add:-5}} />
+    </g>
+
+    <linearGradient id="Gradient1" x1="0" x2="1" y1="0" y2="0">
+        <stop offset="0%" stop-color="#E0FFFF"/>
+        <stop offset="50%" stop-color="#E0FFFF" stop-opacity="10"/>
+        <stop offset="100%" stop-color="#90FFFF"/>
+    </linearGradient>
+</defs>
+
+<style>
+    .dick {stroke:black;stroke-width:2;}
+    .duenn {stroke:black;stroke-width:1;}
+    .unterbrochen {stroke-dasharray="10,2" style="stroke:black; stroke-width:1;"}
+    
+    .blau {stroke:black; stroke-width:1; fill: #E0FFFF}
+    .text {font: bold 20px sans-serif;}
+    .masze {font: bold 22px sans-serif;}
+</style> 
+
+{% if parameter.object == "gerade" %}
+    <line x1="{{parameter.x1}}" y1="{{parameter.y1}}" x2="{{parameter.x2}}" y2="{{parameter.y2}}" class="dick"/>
+    {% if parameter.xkoo1 > 0 %}
+        <text x="{{parameter.xkoo1}}" y="{{parameter.ykoo1|add:25}}" class="text">P</text>
+        <text x="{{parameter.xkoo2}}" y="{{parameter.ykoo2|add:25}}" class="text">Q</text>
+        <use href="#kreuz" transform="translate({{parameter.xkoo1}},{{parameter.ykoo1}})"/>
+        <use href="#kreuz" transform="translate({{parameter.xkoo2}},{{parameter.ykoo2}})"/>
+    {% endif %}
+
+{% elif parameter.object == "strecke" %}
+    <use href="#strecke"/>
+
+{% elif parameter.object == "dreieck" %} 
+    {% if parameter.winkel == "C" %} 
+        <use href="#dreieck" transform="rotate({{parameter.rotate}} 100 100)"/>    
+    {% else %}
+        <polygon points="{{parameter.x1}},{{parameter.y1}} {{parameter.x2}},{{parameter.y2}} {{parameter.x3}},{{parameter.y3}}"  class="blau"/>
+        {% if parameter.winkel != "" %}        
+            {% if parameter.winkel == "A" %}
+                <path d="
+                M{{parameter.x1}} {{parameter.y1|add:-40}}
+                A40 40 0 0 1  {{parameter.x1|add:40}} {{parameter.y1}}
+                "    
+                fill="none"
+                stroke="black"/>
+                <circle cx="{{parameter.x1|add:15}}" cy="{{parameter.y1|add:-15}}" r="2" />
+            {% elif parameter.winkel == "B" %}
+                <path d="
+                M{{parameter.x2}} {{parameter.y1|add:-40}}
+                A40 40 0 0 0  {{parameter.x2|add:-40}} {{parameter.y1}}
+                "    
+                fill="none"
+                stroke="black"/>
+                <circle cx="{{parameter.x2|add:-15}}" cy="{{parameter.y1|add:-15}}" r="2" />
+            {% endif %}
+        {% endif %}         
+        {%for x, y, txt in parameter.ecken %}
+            <text x="{{x}}" y="{{y}}" class="text">{{txt}}</text>
+        {%endfor%}
+        {%for x, y, txt in parameter.seiten %}
+            <text x="{{x}}" y="{{y}}" class="text">{{txt}}</text> 
+        {%endfor%}
+    {% endif %}
+
+{% elif parameter.object == "viereck" %}
+        <polygon class="blau" points="{{parameter.x1}},{{parameter.y1}} {{parameter.x2}},{{parameter.y2}} {{parameter.x3}},{{parameter.y3}} {{parameter.x4}},{{parameter.y4}}" />
+    {%for x, y, txt in parameter.ecken %}
+        <text x="{{x}}" y="{{y}}" class="text">{{txt}}</text>
+    {%endfor%}
+    {% if parameter.x2 != parameter.x4 %}
+        {%for x, y, txt in parameter.seiten %}
+            <text x="{{x}}" y="{{y}}" class="text">{{txt}}</text> 
+        {%endfor%}
+    {% else %}
+        <line x1="{{parameter.x2}}" y1="{{parameter.y2}}" x2="{{parameter.x4}}" y2="{{parameter.y4}}"  class="duenn" />
+        <line x1="{{parameter.x1}}" y1="{{parameter.y1}}" x2="{{parameter.x3}}" y2="{{parameter.y3}}"  class="duenn" />
+    {% endif %} 
+
+{% elif parameter.object == "figur" %}
+        <polygon class="blau" points="{{parameter.x1}},{{parameter.y1}} {{parameter.x2}},{{parameter.y2}} {{parameter.x3}},{{parameter.y3}} {{parameter.x4}},{{parameter.y4}}"  class="blau"/>
+        {%for x, y, txt in parameter.seiten %}
+            <text x="{{x}}" y="{{y}}" class="masze">{{txt}}</text> 
+        {%endfor%}
+        {% if parameter.x3 == parameter.x4 %}
+            <use href="#v1_pfeil"   transform="translate({{parameter.x3}},{{parameter.y1}})"/>
+        {% elif parameter.x4 > parameter.x1 %}
+            <use href="#v1_pfeil"   transform="translate({{parameter.x4|add:10}},{{parameter.y1}})"/>
+        {% elif parameter.x4 < parameter.x1 %}
+            <use href="#v1_pfeil"   transform="translate({{parameter.x1|add:10}},{{parameter.y1}})"/>
+        {% endif %}
+
+{% elif parameter.object == "quadrat" %}
+    {% for x, y in parameter.schieb %}
+        <use href="#quadrat" transform="translate({{x}},{{y}})"/>
+    {% endfor %}
+
+{% elif parameter.object == "quader" %}
+    <polygon points="{{parameter.x14}},{{parameter.y14}} {{parameter.x13}},{{parameter.y13}} {{parameter.x23}},{{parameter.y23}} {{parameter.x24}},{{parameter.y24}}"  style="stroke:black;stroke-width:1;fill: #C0FFFF"/>
+    <polygon points="{{parameter.x13}},{{parameter.y13}} {{parameter.x12}},{{parameter.y12}} {{parameter.x22}},{{parameter.y22}} {{parameter.x23}},{{parameter.y23}}"  class="blau"/>
+    <polygon points="{{parameter.x11}},{{parameter.y11}} {{parameter.x12}},{{parameter.y12}} {{parameter.x13}},{{parameter.y13}} {{parameter.x14}},{{parameter.y14}}"  style="stroke:black;stroke-width:1;fill: #D0FFFF"/>
+    <g stroke-dasharray="10,2" class="duenn">
+        <line x1="{{parameter.x11}}" y1="{{parameter.y11}}" x2="{{parameter.x21}}" y2="{{parameter.y21}}"/>
+        <line x1="{{parameter.x21}}" y1="{{parameter.y21}}" x2="{{parameter.x22}}" y2="{{parameter.y22}}"/>
+        <line x1="{{parameter.x21}}" y1="{{parameter.y21}}" x2="{{parameter.x24}}" y2="{{parameter.y24}}"/>
+    </g>
+
+{% elif parameter.object == "zylinder" %}  
+    <path d="M {{parameter.x1}} {{parameter.y1}} 
+        L {{parameter.x4}} {{parameter.y2}} 
+        A {{parameter.rx_o}} {{parameter.ry_o}} 0 0 0  {{parameter.x3}} {{parameter.y2}} 
+        L {{parameter.x2}} {{parameter.y1}} 
+        A {{parameter.rx_u}} {{parameter.ry_u}} 0 0 1  {{parameter.x1}} {{parameter.y1}}" stroke="black" fill="url(#Gradient1)"/>
+        <path d="M {{parameter.x2}} {{parameter.y1}} A {{parameter.rx_u}} {{parameter.ry_u}} 0 0 0  {{parameter.x1}} {{parameter.y1}}"  stroke-dasharray="10,2" stroke="black" fill="none"/>
+    <ellipse cx="{{parameter.x0}}" cy="{{parameter.y2}}" rx="{{parameter.rx_o}}" ry="{{parameter.ry_o}}" class="blau"/>
+
+{% elif parameter.object == "prisma" %}
+    <polygon points="{{parameter.x14}},{{parameter.y14}} {{parameter.x13}},{{parameter.y13}} {{parameter.x23}},{{parameter.y23}} {{parameter.x24}},{{parameter.y24}}"  style="stroke:black;stroke-width:1;fill: #C0FFFF"/>
+    <polygon points="{{parameter.x13}},{{parameter.y13}} {{parameter.x12}},{{parameter.y12}} {{parameter.x22}},{{parameter.y22}} {{parameter.x23}},{{parameter.y23}}"  class="blau"/>
+    <polygon points="{{parameter.x11}},{{parameter.y11}} {{parameter.x12}},{{parameter.y12}} {{parameter.x13}},{{parameter.y13}} {{parameter.x14}},{{parameter.y14}}"  style="stroke:black;stroke-width:1;fill: #D0FFFF"/>
+    <!-- gestrichelt-->
+    <g stroke-dasharray="10,2" class="duenn">
+        <line x1="{{parameter.x11}}" y1="{{parameter.y11}}" x2="{{parameter.x21}}" y2="{{parameter.y21}}"/>
+        <line x1="{{parameter.x21}}" y1="{{parameter.y21}}" x2="{{parameter.x22}}" y2="{{parameter.y22}}"/>
+        <line x1="{{parameter.x21}}" y1="{{parameter.y21}}" x2="{{parameter.x24}}" y2="{{parameter.y24}}"/>
+    </g>
+    <!--Pfeile-->
+    {% if parameter.breite_o_text > 0 and parameter.breite_o_text != parameter.breite_u_text %}
+        <use href="#h2_pfeil"  transform="translate({{parameter.x24}},{{parameter.y24|add:-15}})"/>
+        <text x="{{parameter.xmo}}" y="{{parameter.y24|add:-20}}" >{{parameter.breite_o_text}}</text>
+    {% endif %}
+
+    <use href="#h1_pfeil"  transform="translate({{parameter.x11}},{{parameter.y11|add:15}})"/>
+    <text x="{{parameter.xmu}}" y="{{parameter.y11|add:30}}" >{{parameter.breite_u_text}}</text>
+   
+    <!--Höhe:-->
+    <use href="#v1_pfeil"   transform="translate({{parameter.x22|add:20}},{{parameter.y22}})"/>
+    <text x="{{parameter.x22|add:25}}" y="{{parameter.ym}}" >{{parameter.hoehe_text}}</text>
+    
+    <!--Tiefe:-->
+    <use href="#v2_pfeil"   transform="translate({{parameter.x12|add:20}},{{parameter.y12}}) rotate (45)"/>
+    <text x="{{parameter.x12|add:50}}" y="{{parameter.y12|add:-10}}" >{{parameter.tiefe_text}}</text>
+
+    <line x1="{{parameter.x23}}" y1="{{parameter.y23}}" x2="{{parameter.x22|add:30}}" y2="{{parameter.y23}}"  stroke = "black" stroke-dasharray="10,2"/>
+    <line x1="{{parameter.x22}}" y1="{{parameter.y22}}" x2="{{parameter.x22|add:30}}" y2="{{parameter.y22}}"  stroke = "black" stroke-dasharray="10,2"/>
+  
+
+{% elif parameter.object == "raum" %}
+    {% for x, y in parameter.schieb %}
+        <use href="#wuerfelchen" transform="translate({{x}},{{y}})"/>
+    {% endfor %}
+
+{% elif parameter.object == "zusammengesetzt" %}
+    {% for x, y in parameter.schieb %}
+        <use href="#wuerfel" transform="translate({{x}},{{y}})"/>
+    {% endfor %}
+{% endif %}
+
+</svg>

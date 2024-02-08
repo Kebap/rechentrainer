@@ -1,0 +1,28 @@
+{% extends 'auswahl.html' %}  
+{% block content %}
+
+<body>
+    <br>
+    <form action="/uebersicht/{{schueler.id}}/" method="POST">
+        {% csrf_token %}
+        <input type="submit" name="zurück" value="Arbeitsergebnisse anzeigen">
+    </form>    
+    <br>
+    <form action="/protokoll/{{schueler.id}}/" method="GET">        
+        <input type="submit" name="zurueck" value="Protokoll anzeigen">
+    </form>
+    <br>
+    <form action="/schueler_aendern/{{schueler.id}}/" method="GET"> 
+        {% csrf_token %}
+        <input type="submit" name="zurueck" value="Daten ändern">
+    </form> 
+    <br>
+
+    <button>
+        <a href="{% url 'gruppe_uebersicht' gruppe.id %}">zurück</a>
+    </button>
+
+</body>
+
+{% endblock %}
+</html>

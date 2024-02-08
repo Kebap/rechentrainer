@@ -1,0 +1,16 @@
+{% extends 'lehrer/gruppe.html' %}  
+{% block content %}
+
+<body>
+<br>
+<form action="/neue_gruppe/" method="POST">
+    {% csrf_token %} 
+        <table>    
+      {{ gruppe_neu.as_table }}
+    </table>
+    <button type="submit">hinzufügen</button>
+</form>
+<p></p>
+</body>
+{% endblock %}
+</html>

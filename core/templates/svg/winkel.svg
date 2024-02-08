@@ -1,0 +1,223 @@
+<svg xmlns="http://www.w3.org/2000/svg"
+version=1.1"center_y3
+<svg viewbox="0 0 400 200">
+<defs>
+    <symbol id="rechteck" >
+        <rect x="65" y="20" width="15" height="15" style="stroke:black;stroke-width:0.5;fill:None"/>	
+      </symbol>  
+
+    <symbol id="bogen" >
+      <path d="M {{parameter.center_x}}, {{parameter.center_y}}
+          L {{parameter.start_bogen_x}}, {{parameter.start_bogen_y}}
+          A {{parameter.bogen_radius}}, {{parameter.bogen_radius}} 0 {{parameter.largeArcFlag}} 1  {{parameter.end_bogen_x}}, {{parameter.end_bogen_y}}
+          Z " 
+        />
+        <text x="{{parameter.text_x}}" y="{{parameter.text_y|add:5}}" fill="black">{{parameter.symbol}}</text>
+      </symbol>
+
+    <symbol id="bogen1" >
+      <path d="M {{parameter.center_x_1}}, {{parameter.center_y_1}}
+          L {{parameter.start_bogen_x_1}}, {{parameter.start_bogen_y_1}}
+          A {{parameter.bogen_radius_1}}, {{parameter.bogen_radius_1}} 0 {{parameter.largeArcFlag_1}} 1  {{parameter.end_bogen_x_1}}, {{parameter.end_bogen_y_1}}
+          Z "  
+        />
+        <text x="{{parameter.text_x_1}}" y="{{parameter.text_y_1|add:5}}" fill="black">{{parameter.symbol_1}}</text>
+      </symbol>
+
+    <symbol id="bogen2" >
+      <path d="M {{parameter.center_x_2}}, {{parameter.center_y_2}}
+          L {{parameter.start_bogen_x_2}}, {{parameter.start_bogen_y_2}}
+          A {{parameter.bogen_radius_2}}, {{parameter.bogen_radius_2}} 0 {{parameter.largeArcFlag_2}} 1  {{parameter.end_bogen_x_2}}, {{parameter.end_bogen_y_2}}
+          Z "  
+        />
+        <text x="{{parameter.text_x_2}}" y="{{parameter.text_y_2|add:5}}" fill="black">{{parameter.symbol_2}}</text>
+      </symbol>
+
+    <symbol id="bogen3" >
+        <path d="M {{parameter.center_x_3}}, {{parameter.center_y_3}}
+            L {{parameter.start_bogen_x_3}}, {{parameter.start_bogen_y_3}}
+            A {{parameter.bogen_radius_3}}, {{parameter.bogen_radius_3}} 0 {{parameter.largeArcFlag_3}} 1  {{parameter.end_bogen_x_3}}, {{parameter.end_bogen_y_3}}
+            Z "  
+          />
+          <text x="{{parameter.text_x_3}}" y="{{parameter.text_y_3|add:5}}" fill="black">{{parameter.symbol_3}}</text>
+        </symbol>     
+        
+    <symbol id="bogen4" >
+          <path d="M {{parameter.center_x_4}}, {{parameter.center_y_4}}
+              L {{parameter.start_bogen_x_4}}, {{parameter.start_bogen_y_4}}
+              A {{parameter.bogen_radius_4}}, {{parameter.bogen_radius_4}} 0 {{parameter.largeArcFlag_4}} 1  {{parameter.end_bogen_x_4}}, {{parameter.end_bogen_y_4}}
+              Z "  
+            />
+            <text x="{{parameter.text_x_4}}" y="{{parameter.text_y_4|add:5}}" fill="black">{{parameter.symbol_4}}</text>
+          </symbol>   
+
+    <symbol id="segment" >
+      <path d="M {{parameter.center_x}}, {{parameter.center_y}}
+          L {{parameter.start_x}}, {{parameter.start_y}}
+          A {{parameter.radius}}, {{parameter.radius}} 0 {{parameter.largeArcFlag}} 1  {{parameter.end_x}}, {{parameter.end_y}}
+          Z"
+          fill={{parameter.color}}
+        />
+      </symbol>
+
+    <symbol id="segment2" >
+      <path d="M {{parameter.center_x2}}, {{parameter.center_y}}
+          L {{parameter.start_x2}}, {{parameter.start_y2}}
+          A {{parameter.radius}}, {{parameter.radius}} 0 {{parameter.largeArcFlag2}} 1  {{parameter.end_x2}}, {{parameter.end_y2}}
+          Z"
+          fill={{parameter.color}}
+        />
+      </symbol>
+
+    <symbol id="hauptnenner" >
+      <path d="M {{parameter.center_x}}, {{parameter.center_y}}
+          L {{parameter.start_x}}, {{parameter.start_y}}
+          A {{parameter.radius}}, {{parameter.radius}} 0 {{parameter.largeArcFlag3}} 1  {{parameter.end_x3}}, {{parameter.end_y3}}
+          Z"
+          fill={{parameter.color}}
+        />
+      </symbol>
+</defs> 
+
+<style>
+    .dick {stroke:black;stroke-width:2;}
+    .duenn {stroke:black;stroke-width:1;}
+    .unterbrochen {stroke-dasharray="10,2" style="stroke:black; stroke-width:1;"}
+    
+    .blau {stroke:black; stroke-width:1; fill: #E0FFFF}
+    .text {font: bold 20px sans-serif;}
+    .masze {font: bold 22px sans-serif;}
+  </style> 
+
+<text x="0" y="0" class="text">text</text>
+<text x="10" y="10" class="text">{{center_x}}</text>
+
+  {% if   parameter.object == "segment" %}
+    <circle cx={{parameter.center_x}} cy={{parameter.center_y}} r={{parameter.radius}} fill="none" stroke="black" />
+      <use href="#segment"/>
+
+  {% elif parameter.object == "winkel" %}
+    <use href="#bogen" fill="{{parameter.color}}"/>
+    <line x1="{{parameter.center_x}}" y1="{{parameter.center_y}}" x2="{{parameter.schenkel_1_x}}" y2="{{parameter.schenkel_1_y}}" stroke="black"/> 
+    <line x1="{{parameter.center_x}}" y1="{{parameter.center_y}}" x2="{{parameter.schenkel_2_x}}" y2="{{parameter.schenkel_2_y}}" stroke="black"/> 
+
+    <use href="#bogen1" fill="{{parameter.color_1}}"/>  
+    <line x1="{{parameter.center_x_1}}" y1="{{parameter.center_y_1}}" x2="{{parameter.schenkel_1_x_1}}" y2="{{parameter.schenkel_1_y_1}}" stroke="black"/> 
+    <line x1="{{parameter.center_x_1}}" y1="{{parameter.center_y_1}}" x2="{{parameter.schenkel_2_x_1}}" y2="{{parameter.schenkel_2_y_1}}" stroke="black"/> 
+  
+    {% if not parameter.bogen_radius_1 %}
+      <circle cx={{parameter.center_x}} cy={{parameter.center_y}} r="2" fill="black"  />
+    {% endif %}
+
+  {% elif parameter.object == "stufen" %}
+    <use href="#bogen1" fill={{parameter.color_1}} transform="translate ({{parameter.schieb_ox}})"/>
+
+    {% if parameter.symbol == "" %}
+      <use href="#bogen2" fill={{parameter.color_2}} transform="translate ({{parameter.schieb_bx}} {{parameter.schieb_by}}) rotate(180 {{parameter.center_x}}, {{parameter.center_y}})"/>
+    {% else %}
+      <use href="#bogen2" fill={{parameter.color_2}} transform="translate ({{parameter.schieb_bx}} {{parameter.schieb_by}})"/>
+    {% endif %}
+
+    <line x1="0" y1="50" x2="500" y2="50" stroke="black"/>   
+    <line x1="0" y1="150" x2="500" y2="150" stroke="black"/>   
+    <line x1="120" y1="-30" x2="120" y2="230" stroke="black" transform="rotate({{parameter.dreh}} 120 100)"/> 
+    <line x1="270" y1="-30" x2="270" y2="230" stroke="black" transform="rotate({{parameter.dreh}} 270 100)"/> 
+
+  {% elif parameter.object == "bruchteile" %}
+      <circle cx={{parameter.center_x}} cy={{parameter.center_y}} r={{parameter.radius}} fill="none" stroke="black" />
+      {% for winkel, farbe in parameter.winkel %}
+        <use href="#segment" fill= {{farbe}} stroke="grey" transform="rotate({{winkel}} {{parameter.center_x}} {{parameter.center_y}})"/>
+      {% endfor %}
+
+  {% elif parameter.object == "rechnung" %}
+    <!-- erster Bruch-->
+    <g id="Bruch">
+      {% for winkel, farbe in parameter.winkel %}
+        <use href="#segment" fill= {{farbe}} stroke="grey" transform="rotate({{winkel}} {{parameter.center_x}} {{parameter.center_y}})"/>
+      {% endfor %}
+      <circle cx={{parameter.center_x}} cy={{parameter.center_y}} r={{parameter.radius}} fill="none" stroke="black" />
+    </g>
+  <!-- zweiter Bruch-->   
+      <circle cx={{parameter.center_x2}} cy={{parameter.center_y}} r={{parameter.radius}} fill="none" stroke="black" />
+      {% for winkel, farbe in parameter.winkel2 %}
+        <use href="#segment2" fill= {{farbe}} stroke="grey" transform="rotate({{winkel}} {{parameter.center_x2}} {{parameter.center_y}})"/>
+      {% endfor %}
+  <!-- Hauptnenner-->
+    {% if parameter.hilfe == 34 or parameter.hilfe == 35 or parameter.hilfe == 36  %}
+      <g id="haupt">
+        {% for winkel, farbe in parameter.winkel3 %}
+          <use href="#hauptnenner" fill= None stroke="green"   transform="rotate({{winkel}} {{parameter.center_x}} {{parameter.center_y}})"/>
+        {% endfor %}
+      </g>
+      <use href="#haupt" transform="translate(150)"/>
+    {% endif %}
+
+  {% elif parameter.object == "kaestchen" %}
+    {% for x, y, farbe in parameter.schieb %}
+      <rect x="{{ x }}" y="{{ y }}" width="15" height="15" 
+      {% if farbe == 1 %}
+        style="stroke:black;stroke-width:0.5;fill:LightSkyBlue ;"
+      {% else %} 
+        style="stroke:grey;stroke-width:0.5;fill:None";"
+      {% endif %}/>    
+    {% endfor %}
+  
+  {% elif parameter.object == "viereck" %}
+    <polygon points="{{parameter.ax}},{{parameter.ay}} {{parameter.bx}},{{parameter.by}} {{parameter.cx}},{{parameter.cy}} {{parameter.dx}},{{parameter.dy}}"  style="stroke:black;stroke-width:1;fill: #C0FFFF"/>
+    <text x={{parameter.ax|add:-15}} y={{parameter.ay|add:10}} >A</text>  
+    <text x={{parameter.bx|add:10}} y={{parameter.by|add:10}} >B</text>  
+
+    <use href="#bogen1"  fill={{parameter.color_1}} /> 
+    <use href="#bogen2" fill="{{parameter.color_2}}" />  
+    <use href="#bogen3" fill={{parameter.color_3}} /> 
+
+    {% if parameter.symbol_4 != "0°" %} 
+      <text x={{parameter.cx|add:10}} y={{parameter.cy|add:-5}} >C</text>  
+      <text x={{parameter.dx|add:-15}} y={{parameter.dy|add:-5}} >D</text> 
+      <use href="#bogen4" fill={{parameter.color_4}} />
+    {% else %}
+      <text x={{parameter.cx|add:-5}} y={{parameter.cy|add:-5}} >C</text>  
+    {% endif %}
+
+  {% elif parameter.object == "n-eck" %}
+    {% if parameter.hilfe == 63 or parameter.hilfe == 73%}
+        <circle cx={{parameter.center_x}} cy={{parameter.center_y}} r={{parameter.bogen_radius|add:5}} fill="yellow"  />
+    {% endif %}
+
+    <g id="dreieck" >
+      <path d="M {{parameter.schenkel_1_x}}, {{parameter.schenkel_1_y}}
+          L {{parameter.center_x}}, {{parameter.center_y}}
+          L {{parameter.schenkel_2_x}}, {{parameter.schenkel_2_y}}"  
+          fill = None stroke="black" 
+        />
+        <line x1="{{parameter.schenkel_1_x}}" y1="{{parameter.schenkel_1_y}}" x2="{{parameter.schenkel_2_x}}" y2="{{parameter.schenkel_2_y}}" stroke="black"/> 
+    </g>
+      {% for winkel in parameter.rotate %}
+        <use href="#dreieck"  transform="rotate ({{winkel}} {{parameter.center_x}} {{parameter.center_y}})"/>
+      {% endfor %}
+      <use href="#bogen" fill={{parameter.color}} /> 
+      {% if parameter.schenkel_1_x != 0 %}
+          <path d="M {{parameter.schenkel_1_x}}, {{parameter.schenkel_1_y}}
+            L {{parameter.start_bogen_x_2}}, {{parameter.start_bogen_y_2}}
+            A {{parameter.bogen_radius}}, {{parameter.bogen_radius}} 0 {{parameter.largeArcFlag_2}} 1  {{parameter.end_bogen_x_2}}, {{parameter.end_bogen_y_2}}
+            Z " 
+            fill={{parameter.color_2}} 
+          />
+      {% endif %}
+
+  {% elif parameter.object == "thales" %}
+    <use href="#bogen1"  fill="{{parameter.color_1}}" /> 
+    <use href="#bogen2" fill={{parameter.color_2}} />  
+
+    <line x1="{{parameter.ax}}" y1="{{parameter.ay}}" x2="{{parameter.bx}}" y2="{{parameter.by}}" stroke="black"/> 
+    <line x1="{{parameter.ax}}" y1="{{parameter.ay}}" x2="{{parameter.cx}}" y2="{{parameter.cy}}" stroke="black"/> 
+    <line x1="{{parameter.bx}}" y1="{{parameter.by}}" x2="{{parameter.cx}}" y2="{{parameter.cy}}" stroke="black"/> 
+
+    <path d="M {{parameter.ax}}, {{parameter.ay}}
+        A {{parameter.thales}}, {{parameter.thales}} 0 1 1  {{parameter.bx}}, {{parameter.by}}"
+        style="stroke:black;stroke-width:1;fill: none"  
+      />
+    <circle cx="200" cy="{{parameter.ay}}" r="2" fill="black"  />
+
+  {%endif%}
+ </svg>

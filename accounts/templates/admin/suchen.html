@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="de">
+<header>
+    <div class="navbar">
+        <a href="{% url 'meine_gruppen' %}">zurück</a>        
+        <a>{{titel}}</a>
+    </div> 
+</header>
+
+<head>       
+    <title>Rechentrainer im Web</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+    <style>
+        body {padding: 1rem;}
+    </style>
+</head>
+{% block content %}
+
+{% if nachricht %}
+    <p style="text-align: left; background-color: yellow; color: red;"> {{nachricht}}</p>
+{% endif %}
+
+<h2> Accounts zusammenführen und löschen</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Vorname</td>
+                <th>Nachname</td>
+                <th>Username</th>
+                <th>ID</th>
+                <th>Aufgaben</th> 
+                <th>aktuell</th>            
+                <th>letzter Login</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for profil, gesamt, neu in zeilen %}
+            <tr>
+                <td>{{profil.vorname }}</td>            
+                <td>{{profil.nachname }}</td>  
+                <td>{{profil.user.username }}</td>            
+                <td>{{profil.user.id }}</td>          
+                <td>{{gesamt }}</td>
+                <td>{{neu }}</td>
+                <td>{{profil.user.last_login|date:"d.m.y" }}</td>
+            </tr>            
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <h3>Aufgaben zusammenfassen:</h3>
+    Das geht nur wenn die Vor- und Nachnamen übereinstimmen - ansonsten müssen diese im jeweiligen Profil geändert werden.
+    <form action="/suchen/" method="post">
+        {% csrf_token %}
+        {{ zusammen_form }}
+        <input type="submit" value="Accounts zusammenführen">
+    </form>
+
+    <h3>Profil löschen:</h3>
+    Das geht nur, wenn keine Aufgaben mit diesem Account gerechnet wurden - ansonsten müssen diese unter 'Aufgaben zusammenfassen' zunächst übertragen werden.
+    <form action="/suchen/" method="post">
+        {% csrf_token %}
+        {{ loeschen_form }}
+        <input type="submit" value="Account löschen">
+    </form>
+
+    <h3>zurück zum Hauptmenü</h3>
+    <button>
+        <a href="{% url 'index' %}">fertig</a>
+    </button>
+
+{% endblock %}
+</html>

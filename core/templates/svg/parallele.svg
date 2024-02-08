@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg"
+    version=1.1"
+    < viewbox="0 0 400 400">
+
+    <style>
+        .dick {stroke:black;stroke-width:2;}
+        .duenn {stroke:black;stroke-width:1;}
+        .text {font: bold 20px sans-serif;}
+    </style> 
+
+    <rect x="0" y="0" width=400 height="400" fill="white"></rect>	
+
+    <text x=15 y={{parameter.g11|add:120}}  class="text">g1</text>
+    <text x=15 y={{parameter.g21|add:220}}  class="text">g2</text>
+    <text x=15 y={{parameter.g21|add:320}}  class="text">g3</text>
+
+    <line y1={{parameter.g11|add:100}} x2=400 y2={{parameter.g12|add:100}}  class="duenn" />	
+    <line y1={{parameter.g21|add:200}} x2=400 y2={{parameter.g22|add:200}}  class="duenn"/>	
+    <line y1={{parameter.g31|add:300}} x2=400 y2={{parameter.g32|add:300}}  class="duenn"/>
+
+    <text x={{parameter.h11|add:115}} y=20  class="text">h1</text>
+    <text x={{parameter.h21|add:215}} y=20  class="text">h2</text>
+    <text x={{parameter.h31|add:315}} y=20  class="text">h3</text>
+
+    <line x1={{parameter.h11|add:100}} y2=400 x2={{parameter.h12|add:100}}  class="duenn"/>	
+    <line x1={{parameter.h21|add:200}} y2=400 x2={{parameter.h22|add:200}}  class="duenn"/>	
+    <line x1={{parameter.h31|add:300}} y2=400 x2={{parameter.h32|add:300}}  class="duenn"/>
+</svg>

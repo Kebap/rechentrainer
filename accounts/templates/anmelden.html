@@ -1,0 +1,22 @@
+{% extends 'auswahl.html' %}  
+{% block content %}
+
+<body>
+  <form method="POST" action="{% url 'anmelden' %}">
+    {% csrf_token %}
+    <table>    
+      {{ form.as_table }}
+    </table>
+    <p>Achte darauf, dass auch beim Benutzername zwischen großen und kleinen Buchstaben unetrschieden wird!</p>
+    <input type="Checkbox"  name="cookie_loeschen"> 
+    <label> Ich arbeite nicht an meinem eigenen Gerät, bitte Cookies nach der Abmeldung löschen</b> </label>
+    <br>
+    <br>  
+      <input type="submit" value="anmelden">
+  </form>
+  <p>Du hast dein Passwort vergessen? 
+    <button><a href="/password_reset">hier klicken</a></button></p>
+  <p>Du hast noch keinen Account? 
+    <button><a href="/registrieren">hier klicken</a></button></p>
+</body>
+{% endblock %}

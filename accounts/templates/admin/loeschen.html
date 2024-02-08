@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+{% load static %}
+
+<html lang="de">
+<header>
+    <div class="navbar">
+        <a href="{% url 'index' %}">&#8962 Home</a>
+        <a>{{titel}}</a>
+    </div> 
+</header>
+<head>       
+    <title>Rechentrainer im Web</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+</head>
+
+{% block content %}
+<h2> Accounts zusammenführen und löschen</h2>
+
+
+{% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+        <li{% if message.tags %} style="text-align: left; background-color: yellow; color: red;" class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
+
+<h3>2. Schritt: Account aussuchen:</h3>
+<table>
+    <thead>
+        <tr>
+            <th>Username</th>
+            <th>ID</th>
+            <th>Aufgaben</th>            
+            <th>letzter Login</th>
+            <th>Vorname</td>
+            <th>Nachname</td>
+            <th>Lerngruppe</td>
+        </tr>
+    </thead>
+    <tbody>
+        {% for profil, anz in zeilen %}
+        <tr>
+            <td>{{profil.user.username }}</td>            
+            <td>{{profil.id }}</td>
+            <td>{{anz }}</td>
+            <td>{{profil.user.last_login }}</td>
+            <td>{{profil.vorname }}</td>            
+            <td>{{profil.nachname }}</td>            
+            <td>{{profil.gruppe }}</td>            
+
+        {% endfor %}
+    </body>
+</table>
+
+<h3>3. Schritt: Accounts zusammenfassen:</h3>
+<form action="/zusammenfuehren/" method="post">
+    {% csrf_token %}
+    {{ zusammen_form }}
+    <input type="submit" value="Accounts zusammenführen">
+</form>
+
+<h3>4. Schritt: Accounts löschen:</h3>
+<form action="/zusammenfuehren/" method="post">
+    {% csrf_token %}
+    {{ loeschen_form }}
+    <input type="submit" value="Account löschen">
+</form>
+
+<h3>5. Schritt: zurück zum Hauptmenü</h3>
+<button>
+    <a href="{% url 'index' %}">fertig</a>
+</button>
+
+{% endblock %}
+</html>

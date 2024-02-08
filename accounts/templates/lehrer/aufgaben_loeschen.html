@@ -1,0 +1,27 @@
+{% extends 'auswahl.html' %}  
+{% block content %}
+
+<body>
+    <p>Ich frage sicherheitshalber nochmal:</p>
+    <p>Sollen alle Aufgaben wirklich gelöscht werden?</p>
+    <table>
+    <tr>
+    <td>
+        <button>
+            <a href="{% url 'index' %}">zurück</a>
+        </button>
+    </td>
+    <td>
+    <form action="/aufgaben_loeschen/{{lehrer.id}}/" method="POST">
+        {% csrf_token %}
+        <input  id="bestaetigt" name="bestaetigt" type="Checkbox">
+        <label >ja, ich bin sicher</label> 
+        <input type="submit" name="loeschen" value="loeschen"></button>
+    </form>
+    </td>
+    </tr>
+    </table>
+
+</body>
+{% endblock %}
+</html>
